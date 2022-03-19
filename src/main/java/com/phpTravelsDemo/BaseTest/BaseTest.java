@@ -85,6 +85,7 @@ public class BaseTest {
 		}
 
 	}
+	
 
 	public void TypeInto(WebElement element, String text) {
 
