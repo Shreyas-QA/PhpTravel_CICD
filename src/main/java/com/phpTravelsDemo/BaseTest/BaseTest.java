@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.time.Duration;
 import java.util.Properties;
+import java.util.concurrent.TimeUnit;
 
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
@@ -44,8 +45,7 @@ public class BaseTest {
 		String browsername = prop.getProperty("browser");
 		if (browsername.equals("chrome")) {
 
-			System.setProperty("webdriver.chrome.driver",
-					System.getProperty("user.dir") + "/Drivers/chromedriver");
+			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver");
 
 			driver = new ChromeDriver();
 		} else if (browsername.equals("firefox")) {
@@ -56,8 +56,7 @@ public class BaseTest {
 
 		driver.manage().window().maximize();
 		driver.manage().deleteAllCookies();
-		driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(60));
-		driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
+		driver.manage().timeouts().implicitlyWait(20, TimeUnit.SECONDS);
 
 		driver.get(prop.getProperty("url"));
 	}
@@ -85,7 +84,6 @@ public class BaseTest {
 		}
 
 	}
-	
 
 	public void TypeInto(WebElement element, String text) {
 
