@@ -48,7 +48,7 @@ public class BaseTest {
 			if (browsername.equals("chrome")) {
 
 				System.setProperty("webdriver.chrome.driver",
-						System.getProperty("user.dir") + "//Driver_linux//chromedriver");
+						System.getProperty("user.dir") + "/Driver_linux/chromedriver");
 
 				driver = new ChromeDriver();
 
