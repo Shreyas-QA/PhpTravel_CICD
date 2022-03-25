@@ -32,7 +32,7 @@ public class BaseTest {
 			}
 
 		} catch (FileNotFoundException e) {
-			
+
 			e.printStackTrace();
 		}
 
@@ -41,17 +41,36 @@ public class BaseTest {
 	public static void ReadProperties() {
 
 		String browsername = prop.getProperty("browser");
-		if (browsername.equals("chrome")) {
+		String osname = prop.getProperty("os");
 
-			String chromepath=System.getProperty("user.dir")+"/Drivers/chromedriver";
-			System.out.println(chromepath);
-			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver");
-			
-			driver = new ChromeDriver();
-		} else if (browsername.equals("firefox")) {
+		if (osname.equals("linux")) {
 
-//			System.setProperty("webdriver.gecko.driver", "/opt/homebrew/bin/geckodriver");
-			driver = new FirefoxDriver();
+			if (browsername.equals("chrome")) {
+
+				System.setProperty("webdriver.chrome.driver",
+						System.getProperty("user.dir") + "//Driver_linux//chromedriver");
+
+				driver = new ChromeDriver();
+
+			} else if (browsername.equals("firefox")) {
+
+//				System.setProperty("webdriver.gecko.driver", "/opt/homebrew/bin/geckodriver");
+				driver = new FirefoxDriver();
+			}
+		} else if (osname.equals("windows")) {
+
+			if (browsername.equals("chrome")) {
+
+				String chromepath = System.getProperty("user.dir") + "/Drivers/chromedriver";
+				System.out.println(chromepath);
+				System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver");
+
+				driver = new ChromeDriver();
+			} else if (browsername.equals("firefox")) {
+
+//				System.setProperty("webdriver.gecko.driver", "/opt/homebrew/bin/geckodriver");
+				driver = new FirefoxDriver();
+			}
 		}
 
 		driver.manage().window().maximize();
