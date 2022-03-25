@@ -43,8 +43,10 @@ public class BaseTest {
 		String browsername = prop.getProperty("browser");
 		if (browsername.equals("chrome")) {
 
+			String chromepath=System.getProperty("user.dir")+"/Drivers/chromedriver";
+			System.out.println(chromepath);
 			System.setProperty("webdriver.chrome.driver", System.getProperty("user.dir") + "/Drivers/chromedriver");
-
+			
 			driver = new ChromeDriver();
 		} else if (browsername.equals("firefox")) {
 
